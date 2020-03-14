@@ -30,14 +30,27 @@ public class CurrencyService {
     public List<Rate> getSaleRateCurrencies() throws IOException {
         List<Rate> currenciesMinusMargin = new ArrayList<>();
 
-        Rate newRate = null;
-        for (Rate originRate : getCurrency()){
-           newRate.setCurrency(originRate.getCurrency());
-           newRate.setMid(originRate.getMid() * 0.98);
-           newRate.setCode(originRate.getCode());
-           currenciesMinusMargin.add(newRate);
+        for (Rate originRate : getCurrency()) {
+            Rate rate = new Rate();
+            rate.setCurrency(originRate.getCurrency());
+            rate.setCode(originRate.getCode());
+            rate.setMid(originRate.getMid() * 0.98);
+            currenciesMinusMargin.add(rate);
         }
-       return currenciesMinusMargin;
+        return currenciesMinusMargin;
+    }
+
+    public List<Rate> getBuyRateCurrencies() throws IOException {
+        List<Rate> currenciesMinusMargin = new ArrayList<>();
+
+        for (Rate originRate : getCurrency()) {
+            Rate rate = new Rate();
+            rate.setCurrency(originRate.getCurrency());
+            rate.setCode(originRate.getCode());
+            rate.setMid(originRate.getMid() * 1.03);
+            currenciesMinusMargin.add(rate);
+        }
+        return currenciesMinusMargin;
     }
 
     public Double getCourse(String value) throws IOException {

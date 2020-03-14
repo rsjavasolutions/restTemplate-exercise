@@ -37,6 +37,13 @@ public class CurrencyController {
         return currencyService.getExchange(amount, from, to);
     }
 
+    @GetMapping("currencies/sale")
+    public List<Rate> getSaleCurrency() throws IOException {
+        return currencyService.getSaleRateCurrencies();
+    }
 
-
+    @GetMapping("currencies/buy")
+    public List<Rate> getBuyCurrency() throws IOException {
+        return currencyService.getBuyRateCurrencies();
+    }
 }
