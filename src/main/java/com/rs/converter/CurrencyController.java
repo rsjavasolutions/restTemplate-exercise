@@ -33,7 +33,10 @@ public class CurrencyController {
     }
 
     @GetMapping("/currencies/convert")
-    public Double getExchange(@RequestParam Double amount, String from) throws IOException {
-        return currencyService.getExchange(amount, from);
+    public Double getExchange(@RequestParam Double amount, String from, String to) throws IOException {
+        return currencyService.getExchange(amount, from, to);
     }
+
+
+
 }
