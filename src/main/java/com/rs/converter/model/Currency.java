@@ -1,7 +1,8 @@
-package com.rs.converter;
+package com.rs.converter.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Currency {
