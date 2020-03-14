@@ -1,5 +1,7 @@
-package com.rs.converter;
+package com.rs.converter.controller;
 
+import com.rs.converter.model.Code;
+import com.rs.converter.model.CurrencyConverter;
 import com.rs.converter.model.Rate;
 import com.rs.converter.service.CurrencyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 
 public class CurrencyController {
 
+    @Autowired
     CurrencyService currencyService;
 
     @Autowired
-    public CurrencyController(CurrencyService currencyService) {
-        this.currencyService = currencyService;
-    }
+    CurrencyConverter currencyConverter;
 
     @GetMapping("/currencies")
     public List<Rate> getCurrency() throws IOException {
@@ -43,4 +45,9 @@ public class CurrencyController {
     public List<Rate> getBuyCurrency() throws IOException {
         return currencyService.getBuyRateCurrencies();
     }
-}
+
+    @GetMapping("currencies/converter")
+        public Map<Code,Double> codeToValue(){
+            return currencyConverter.showConverterStatus();
+        }
+    }
